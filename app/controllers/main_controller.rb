@@ -1,6 +1,16 @@
 class MainController < ApplicationController
   def index
   	@inquiries = Inquiry.all
+
+    @total_value = 0
+
+    @inquiries.each do |i|
+      @total_value += i.value
+    end
+
+    @categories = Category.all.collect do |c|
+      c.name
+    end
   end
 
   def new

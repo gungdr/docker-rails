@@ -2,8 +2,8 @@
 <div class="row">
 	<div class="col-lg-12">
 	<div class="form-group">
-		<%= f.label :category %>	
-		<%= f.text_field :category,:class => "form-control" %>
+		<%= f.label :category %>
+		<%= f.select :category, @categories, {include_blank: false} ,{:class=> "form-control"}  %>
 		<%= f.label :name %>	
 		<%= f.text_field :name,:class => "form-control" %>
 		<%= f.label :value %>	
@@ -37,7 +37,12 @@
 			<% end %>
 		</td>
 	</tr>
-		
 	<% end %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><strong> <%=@total_value%> </strong></td>
+		<td></td>
+	</tr>
 </tbody>
 </table>
