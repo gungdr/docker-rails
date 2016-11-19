@@ -1,0 +1,43 @@
+<%=form_for :inquiry do |f| %>
+<div class="row">
+	<div class="col-lg-12">
+	<div class="form-group">
+		<%= f.label :category %>	
+		<%= f.text_field :category,:class => "form-control" %>
+		<%= f.label :name %>	
+		<%= f.text_field :name,:class => "form-control" %>
+		<%= f.label :value %>	
+		<%= f.text_field :value,:class => "form-control" %>
+	</div>
+		
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>
+</div>
+<% end %>
+
+<table class="table">
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Category</th>
+		<th>Value</th>
+		<th>Action</th>
+	</tr>
+</thead>
+<tbody>
+	<%@inquiries.each do |inquiry|%>
+	<tr>
+		<td><%= inquiry.name %></td>
+		<td><%= inquiry.category %></td>
+		<td><%= inquiry.value %></td>
+		<td>
+			<%=form_tag "/delete" do %>
+				<%= hidden_field_tag :id,inquiry.id %>
+				<%= submit_tag "Delete", :class => "btn btn-danger" %>
+			<% end %>
+		</td>
+	</tr>
+		
+	<% end %>
+</tbody>
+</table>

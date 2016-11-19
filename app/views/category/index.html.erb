@@ -1,0 +1,38 @@
+<%=form_for :category do |f| %>
+<div class="row">
+	<div class="col-lg-12">
+	<div class="form-group">
+		<%= f.label :name %>	
+		<%= f.text_field :name,:class => "form-control" %>
+		<%= f.label :color %>	
+		<%= f.text_field :color,:class => "form-control" %>
+	</div>
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>
+</div>
+<% end %>
+
+<table class="table">
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Color</th>
+		<th>Action</th>
+	</tr>
+</thead>
+<tbody>
+	<%@categories.each do |category|%>
+	<tr>
+		<td><%= category.name %></td>
+		<td><%= category.color %></td>
+		<td>
+			<%=form_tag "/category/delete" do %>
+				<%= hidden_field_tag :id,category.id %>
+				<%= submit_tag "Delete", :class => "btn btn-danger" %>
+			<% end %>
+		</td>
+	</tr>
+		
+	<% end %>
+</tbody>
+</table>
