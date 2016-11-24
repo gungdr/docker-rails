@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'category/new'
-
-  get 'category/delete'
+  # get 'account/delete'
+  # get 'account/new'
+  # get 'category/new'
+  # get 'category/delete'
 
    root 'main#index'
    post '/' => 'main#new'
@@ -11,6 +12,10 @@ Rails.application.routes.draw do
    get '/category' => 'category#index'
    post '/category' => 'category#new'
    post '/category/delete' => 'category#delete' 
+
+   get '/account' => 'account#index'
+   post '/account' => 'account#new'
+   post '/account/delete' => 'account#delete' 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

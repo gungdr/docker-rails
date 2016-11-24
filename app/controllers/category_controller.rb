@@ -1,5 +1,5 @@
 class CategoryController < ApplicationController
-	
+	protect_from_forgery with: :exception
 	def index
 		@categories = Category.all
 	end
