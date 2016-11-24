@@ -10,7 +10,7 @@ class CategoryController < ApplicationController
   			c.name = params[:category][:name]
   			c.color = params[:category][:color]
   		end
-  		category.save
+  		category.save!
   		flash[:notice] = "#{category.name} has been created "
   	rescue Exception => e
   		flash[:error] = e.message

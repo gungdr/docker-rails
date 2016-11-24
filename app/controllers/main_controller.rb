@@ -22,7 +22,7 @@ class MainController < ApplicationController
 	  		i.trans_type = "DB"
 	  		i.date = Time.now
 	  	end
-	  	inquiry.save	
+	  	inquiry.save!
 	  	flash[:notice] = "#{inquiry.name} has been created "
   	rescue Exception => e
   		flash[:error] = e.message
@@ -33,7 +33,7 @@ class MainController < ApplicationController
   def delete
   	begin
   		inquiry = Inquiry.find_by id: params[:id]
-  		inquiry.delete
+  		inquiry.delete!
   		flash[:notice] = "#{inquiry.name} has been deleted "
   	rescue Exception => e
   		flash[:error] = e.message
