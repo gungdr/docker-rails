@@ -1,0 +1,38 @@
+<%=form_for :account do |f| %>
+<div class="row">
+	<div class="col-lg-12">
+	<div class="form-group">
+		<%= f.label :name %>	
+		<%= f.text_field :name,:class => "form-control" %>
+		<%= f.label :value %>	
+		<%= f.text_field :value,:class => "form-control" %>
+	</div>
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>
+</div>
+<% end %>
+
+<table class="table">
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Value</th>
+		<th>Action</th>
+	</tr>
+</thead>
+<tbody>
+	<%@accounts.each do |account|%>
+	<tr>
+		<td><%= account.name %></td>
+		<td><%= account.value %></td>
+		<td>
+			<%=form_tag "/account/delete" do %>
+				<%= hidden_field_tag :id,account.id %>
+				<%= submit_tag "Delete", :class => "btn btn-danger" %>
+			<% end %>
+		</td>
+	</tr>
+		
+	<% end %>
+</tbody>
+</table>
