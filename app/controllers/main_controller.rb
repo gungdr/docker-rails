@@ -1,16 +1,16 @@
 class MainController < ApplicationController
   def index
-  	@inquiries = Inquiry.all
-
-    @total_value = 0
-
-    @inquiries.each do |i|
-      @total_value += i.value
-    end
+  	@inquiries = Inquiry.select("inquiries.*, categories.color")
+                        .joins("inner join categories on categories.name = category ")
+                        .paginate(:page => params[:page], :per_page =>5)
 
     @categories = Category.all.collect do |c|
       c.name
     end
+
+    @total_value = Inquiry.all.sum(:value).round(2)
+    @total_account = Account.all.sum(:value).round(2)
+
   end
 
   def new

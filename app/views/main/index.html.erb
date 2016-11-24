@@ -1,4 +1,15 @@
 <%=form_for :inquiry do |f| %>
+
+<div class="row">
+	<div class="col-lg-6 text-right">
+		<h2>Your Expense This Period</h2>
+		<h3><strong><%=@total_value%></strong></h3>
+	</div>
+	<div class="col-lg-6 text-right">
+		<h2>Your Account</h2>
+		<h3><strong> <%=@total_account%> </strong></h3>
+	</div>
+</div>
 <div class="row">
 	<div class="col-lg-12">
 	<div class="form-group">
@@ -15,6 +26,10 @@
 </div>
 <% end %>
 
+<div class="pagination">
+	<%= will_paginate @inquiries%>	
+</div>
+
 <table class="table">
 <thead>
 	<tr>
@@ -26,7 +41,7 @@
 </thead>
 <tbody>
 	<%@inquiries.each do |inquiry|%>
-	<tr>
+	<tr style="background: <%= inquiry.color  %>;">
 		<td><%= inquiry.name %></td>
 		<td><%= inquiry.category %></td>
 		<td><%= inquiry.value %></td>
@@ -38,11 +53,5 @@
 		</td>
 	</tr>
 	<% end %>
-	<tr>
-		<td></td>
-		<td></td>
-		<td><strong> <%=@total_value%> </strong></td>
-		<td></td>
-	</tr>
 </tbody>
 </table>
